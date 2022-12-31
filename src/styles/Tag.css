@@ -1,0 +1,15 @@
+.tag-name {
+    background-color: #FF6060;
+    border-radius: 10px;
+    height: 25px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    color: #fff;
+    line-height: 19.96px;
+    cursor: pointer;
+    user-select: none;
+}

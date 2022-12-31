@@ -1,0 +1,50 @@
+.ProductPage .row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.ProductPage {
+    color: #FF6060;
+}
+.ProductPage .infos {
+    display: flex;
+    flex-direction: column;
+}
+.ProductPage .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.ProductPage .profile .img-wrapper {
+    width: 64px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.ProductPage .profile img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.ProductPage .profile p {
+    text-align: right;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 142.6%;
+    max-width: 100px;
+}
+
+.ProductPage .tags {
+    display: flex;
+    overflow: auto hidden;
+    gap: 10px;
+    width: 100%;
+}
+.ProductPage .rating {
+    display: flex;
+    gap: 15px;
+    height: 30px;
+}
+.dropdownWrapper {
+    gap: 20px;
+}
