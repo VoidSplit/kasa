@@ -6,14 +6,28 @@
 .ProductPage {
     color: #FF6060;
 }
+.ProductPage .grid {
+    margin-top: 10px;
+    display: grid;
+    
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "a a a d" "b b b c";
+
+    gap: 10px;
+}
 .ProductPage .infos {
     display: flex;
     flex-direction: column;
+    grid-area: a;
 }
 .ProductPage .profile {
     display: flex;
     align-items: center;
     gap: 10px;
+    grid-area: d;
+    justify-content: flex-end;
+    background-color: reds;
 }
 .ProductPage .profile .img-wrapper {
     width: 64px;
@@ -36,15 +50,49 @@
 
 .ProductPage .tags {
     display: flex;
-    overflow: auto hidden;
+    align-items: center;
+    overflow: scroll;
     gap: 10px;
     width: 100%;
+    grid-area: b;
 }
 .ProductPage .rating {
     display: flex;
     gap: 15px;
-    height: 30px;
+    grid-area: c;
+    align-items: center;
+    justify-content: flex-end;
 }
 .dropdownWrapper {
+    flex-direction: column;
     gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .ProductPage .grid {
+        grid-template-rows: repeat(3, auto);
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "a a" "b b" "c d";
+    }
+    .ProductPage .infos h1 {
+        font-size: 1.3rem;
+    }
+    .ProductPage .rating {
+        gap: 5px;
+        justify-content: flex-start;
+    }
+    .ProductPage .profile {
+        justify-content: flex-end;
+    }
+    
+    .ProductPage .rating img {
+        height: 25px;
+    }
+    .ProductPage .profile .img-wrapper {
+        height: 32px;
+        width: 32px;
+    }
+    .ProductPage .profile p {
+        font-size: 16px;
+    }
 }

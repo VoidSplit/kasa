@@ -3,7 +3,6 @@ import caret from "../assets/Dropdown/DropdownCaret.svg"
 import { useState } from 'react'
 
 const Dropdown = ({list}) => {
-  console.log(list)
   const [isOpen, setIsOpen] = useState(false)
     let display = list.filter(i => i.display === true)[0]
     let filteredList = list.filter(i => i.display === undefined)

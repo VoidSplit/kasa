@@ -8,67 +8,24 @@ import '../styles/ProductPage.css';
 import '../styles/Footer.css';
 import '../styles/About.css';
 
+
 import Tag from '../components/Tag';
 import Thumb from '../components/Thumb';
 import Carousel from './Carousel';
-//import MiniCarousel from './MiniCarousel';
 import Dropdown from './Dropdown';
+
+
+import bannerImage from '../assets/Images/banner.png';
+import bannerAboutImage from '../assets/Images/bannerAbout.png';
 
 import logo from '../assets/Logo/logoText.svg';
 import logoWhite from '../assets/Logo/logo-white.svg';
-import bannerImage from '../assets/Images/banner.png';
-import bannerAboutImage from '../assets/Images/bannerAbout.png';
 import fullStar from '../assets/Rating/fullStar.svg';
 import emptyStar from '../assets/Rating/emptyStar.svg';
 
+
 import logements from '../data/logements.json'
 
-
-
-
-/*<Dropdown list={[
-        { display: true, text: "Équipements" },
-        { text: "Climatisation" },
-        { text: "Wi-Fi" },
-        { text: "Cuisine" },
-        { text: "Espace de travail" },
-        { text: "Fer à repasser" },
-        { text: "Sèche-cheveux" },
-        { text: "Cintres" },
-      ]}/> */
-
-/*const images = [
-  'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  'https://images.pexels.com/photos/2062426/pexels-photo-2062426.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  'https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1268&q=80'
-];*/
-//<Carousel images={images} />
-
-/*const images = [
-  'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  'https://images.pexels.com/photos/2062426/pexels-photo-2062426.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  'https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1268&q=80'
-];*/
-//<MiniCarousel images={images} />
-
-/*
-
-        <nav>
-          <img src={logo} alt="Logo du site" />
-          <div className="links">
-            <button href="#" className="active" key="Accueil">Accueil</button>
-            <button href="#" key="APropos">A Propos</button>
-          </div>
-        </nav>
-        <section className='banner'>
-          <h1>Chez vous, partout et ailleurs</h1>
-          <img src={bannerImage} alt="Bannière" />
-        </section>
-        <section className='gallery'>
-          {logements.map(l => <Thumb locationDisplay={l.title} image={l.cover} key={l.id}/>)}
-        </section>
-        
-*/
 
 export default function App() {
   return (
@@ -93,9 +50,10 @@ export default function App() {
 
 const ProductPage = () => {
   let params = useParams();
-
   let productInfos = logements.filter(el => el.id === params.id)
   let ratingStars = []
+
+
   for(let i = 1; i<= 5; i++) {
     i <= productInfos[0].rating ? ratingStars.push(fullStar) : ratingStars.push(emptyStar)  
   }
@@ -103,11 +61,10 @@ const ProductPage = () => {
   let equipementList = [
     {display: true, text: 'Appareils'}
   ]
+
   productInfos[0].equipments.forEach(e => {
     equipementList.push({text: e})
   })
-
-
 
   return (
     <Fragment>
@@ -120,7 +77,7 @@ const ProductPage = () => {
       </nav>
       <div className="ProductPage">
         { productInfos.map(l => <Carousel images={l.pictures} key={l.id}/>) }
-        <div className="row">
+        <div className="grid">
           <div className="infos">
             <h1>{productInfos[0].title}</h1>
             <p className="location">{productInfos[0].location}</p>
@@ -131,8 +88,6 @@ const ProductPage = () => {
               <img src={productInfos[0].host.picture} alt="Profil de l'utiliisateur" />
             </div>
           </div>
-        </div>
-        <div className="row">
           <div className="tags">
             {productInfos[0].tags.map(p => <Tag tagName={p} key={p} />)}
           </div>
