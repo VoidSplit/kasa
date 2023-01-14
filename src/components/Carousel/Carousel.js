@@ -1,7 +1,7 @@
-import "../styles/MiniCarousel.css"
+import "../Carousel/Carousel.css"
 import React, { useState } from 'react';
 
-const MiniCarousel = (props) => {
+const Carousel = (props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePreviousClick = () => {
@@ -19,22 +19,24 @@ const MiniCarousel = (props) => {
   const { images } = props;
 
   return (
-    <div className="mini-carousel-container">
+    <div className="carousel-container">
       <img src={images[currentIndex]} alt="carousel" />
-      <div className="arrows">
-        <button onClick={handleNextClick}>
+      {images.length > 1 ? <div className="arrows">
+        <button onClick={handleNextClick} aria-label="next">
           <svg width="48" height="80" viewBox="0 0 48 80" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.959961 72.3458L8.03996 79.4258L47.64 39.8258L8.03996 0.22583L0.959961 7.30583L33.48 39.8258L0.959961 72.3458Z" fill="white" />
           </svg>
         </button>
-        <button onClick={handlePreviousClick}>
+        <button onClick={handlePreviousClick} aria-label="previous">
           <svg width="48" height="80" viewBox="0 0 48 80" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.959961 72.3458L8.03996 79.4258L47.64 39.8258L8.03996 0.22583L0.959961 7.30583L33.48 39.8258L0.959961 72.3458Z" fill="white" transform="rotate(180 24 40)" />
           </svg>
         </button>
       </div>
+      : null }
+      <div className="pagination">{currentIndex+1}/{images.length}</div>
     </div>
   );
 };
 
-export default MiniCarousel;
+export default Carousel;

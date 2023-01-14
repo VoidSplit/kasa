@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import {React, useEffect, Fragment}  from "react"
 import { BrowserRouter as Router, Route, Routes, Link, useParams } from "react-router-dom"
 
 
@@ -9,10 +9,10 @@ import '../styles/Footer.css';
 import '../styles/About.css';
 
 
-import Tag from '../components/Tag';
-import Thumb from '../components/Thumb';
-import Carousel from './Carousel';
-import Dropdown from './Dropdown';
+import Tag from './Tag/Tag';
+import Thumb from './Thumb/Thumb';
+import Carousel from './Carousel/Carousel';
+import Dropdown from './Dropdown/Dropdown';
 
 
 import bannerImage from '../assets/Images/banner.png';
@@ -28,11 +28,11 @@ import logements from '../data/logements.json'
 
 
 export default function App() {
+  useEffect(() => { window.scrollTo({top: 0, left: 0, behavior: 'smooth'}) }, []);
   return (
     <Router>
       <div className="App">
         <div className="inner">
-          
           <Routes>
             <Route exact path="/" element={ <HomePage/> }/>
 
@@ -51,22 +51,23 @@ export default function App() {
 const ProductPage = () => {
   let params = useParams();
   let productInfos = logements.filter(el => el.id === params.id)
+  let exist = productInfos.length > 0
   let ratingStars = []
-
-
-  for(let i = 1; i<= 5; i++) {
-    i <= productInfos[0].rating ? ratingStars.push(fullStar) : ratingStars.push(emptyStar)  
-  }
-
   let equipementList = [
     {display: true, text: 'Appareils'}
   ]
 
-  productInfos[0].equipments.forEach(e => {
-    equipementList.push({text: e})
-  })
-
-  return (
+  if (exist) { 
+    for(let i = 1; i<= 5; i++) {
+      i <= productInfos[0].rating ? ratingStars.push(fullStar) : ratingStars.push(emptyStar)  
+    }
+    
+    productInfos[0].equipments.forEach(e => {
+      equipementList.push({text: e})
+    })
+  }
+  
+  return exist ? (
     <Fragment>
       <nav>
         <img src={logo} alt="Logo du site" />
@@ -105,7 +106,7 @@ const ProductPage = () => {
       </div>
     </Fragment>
     
-  )
+  ) : (<ErrorPage />)
 }
 const HomePage = () => {
   return (
@@ -163,24 +164,24 @@ const AboutPage = () => {
       </div>
       <div className="dropdown-wrapper">
         <Dropdown list={[
-              { display: true, text: "Fiabilité" },
-              { text: "Les annonces postées sur Kasa garantissent une fiabilité totale. Les photos sont conformes aux logements, et toutes les informations sont régulièrement vérifiées  par nos équipes." },
-            ]}/>
+          { display: true, text: "Fiabilité" },
+          { text: "Les annonces postées sur Kasa garantissent une fiabilité totale. Les photos sont conformes aux logements, et toutes les informations sont régulièrement vérifiées  par nos équipes." },
+        ]}/>
 
         <Dropdown list={[
-              { display: true, text: "Respect" },
-              { text: "La bienveillance fait partie des valeurs fondatrices de Kasa. Tout comportement discriminatoire ou de perturbation du voisinage entraînera une exclusion de notre plateforme." },
-            ]}/>
+          { display: true, text: "Respect" },
+          { text: "La bienveillance fait partie des valeurs fondatrices de Kasa. Tout comportement discriminatoire ou de perturbation du voisinage entraînera une exclusion de notre plateforme." },
+        ]}/>
 
         <Dropdown list={[
-              { display: true, text: "Service" },
-              { text: "Nos équipes se tiennent à votre disposition pour vous fournir une expérience parfaite. N'hésitez pas à nous contacter si vous avez la moindre question." },
-            ]}/>
+          { display: true, text: "Service" },
+          { text: "Nos équipes se tiennent à votre disposition pour vous fournir une expérience parfaite. N'hésitez pas à nous contacter si vous avez la moindre question." },
+        ]}/>
 
         <Dropdown list={[
-              { display: true, text: "Sécurité" },
-              { text: "La sécurité est la priorité de Kasa. Aussi bien pour nos hôtes que pour les voyageurs, chaque logement correspond aux critères de sécurité établis par nos services. En laissant une note aussi bien à l'hôte qu'au locataire, cela permet à nos équipes de vérifier que les standards sont bien respectés. Nous organisons également des ateliers sur la sécurité domestique pour nos hôtes." },
-            ]}/>
+          { display: true, text: "Sécurité" },
+          { text: "La sécurité est la priorité de Kasa. Aussi bien pour nos hôtes que pour les voyageurs, chaque logement correspond aux critères de sécurité établis par nos services. En laissant une note aussi bien à l'hôte qu'au locataire, cela permet à nos équipes de vérifier que les standards sont bien respectés. Nous organisons également des ateliers sur la sécurité domestique pour nos hôtes." },
+        ]}/>
       </div>
     </section>
   </Fragment>

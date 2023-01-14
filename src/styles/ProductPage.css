@@ -51,7 +51,7 @@
 .ProductPage .tags {
     display: flex;
     align-items: center;
-    overflow: scroll;
+    overflow: auto;
     gap: 10px;
     width: 100%;
     grid-area: b;
