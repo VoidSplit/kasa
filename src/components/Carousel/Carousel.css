@@ -73,4 +73,7 @@
   .carousel-container .arrows button svg {
     height: 20px;
   }
+  .carousel-container .pagination {
+    display: none;
+  }
 }
